@@ -10,9 +10,9 @@ app.use(cors({
 
 // routes
 // get information for all available instances: instance_id
-// app.get('/instance_info', routes.instance_info);
+app.get('/get_All_EC2s', routes.get_All_EC2s);
 // get instance status with instance_id
-app.get('/instance_status/:instance_id', routes.instance_status);
+// app.get('/instance_status/:EC2_IDs', routes.EC2_status);
 
 
 app.listen(config.server_port, () => {

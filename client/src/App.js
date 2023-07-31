@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { green, amber } from '@mui/material/colors'
+import { amber, blueGrey } from '@mui/material/colors'
 import { createTheme } from "@mui/material/styles";
 
 import NavBar from './components/NavBar';
@@ -10,7 +10,7 @@ import HomePage from './pages/HomePage';
 // in this case, we only change the color scheme
 export const theme = createTheme({
   palette: {
-    primary: green,
+    primary: blueGrey,
     secondary: amber,
   },
 });

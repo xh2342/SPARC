@@ -1,25 +1,34 @@
 import { useEffect, useState } from 'react';
-import { Container, Divider, Link } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Box, Button, Container} from '@mui/material';
+import {EC2Card} from '../components/EC2Card';
 
 const config = require('../config.json');
 
 export default function HomePage() {
 
-  const [EC2Status, setEC2Status] = useState(null);
-  const instance_id = "i-01041635597050d92";
-  useEffect(() => {
-    fetch(`http://${config.server_host}:${config.server_port}/instance_status/${instance_id}`)
+  const [EC2s, setEC2s] = useState([]);
+
+  // fetch all available EC2 IDs
+  const getEC2s = () => {
+    fetch(`http://${config.server_host}:${config.server_port}/get_All_EC2s`)
       .then(res => res.json())
       .then(resJson => {
-        setEC2Status(resJson);
-      });
-    }, []);
-
+        setEC2s(resJson);
+        console.log(EC2s);
+      })
+  };
+  
   return (
-    <Container>
-      <h2>EC2 ID: {instance_id}</h2>
-      <h2>Status: {EC2Status}</h2>
+    <Container sx={{ paddingTop: 5 }}>
+      <div>
+        <Box display="flex" gap={2}>
+          {EC2s.map((instance, index) => (
+            <EC2Card instance={instance} />
+          ))}
+        </Box>
+      </div>
+      <Button onClick={() => getEC2s()}>Fetch</Button>
     </Container>
+    
   );
 };
