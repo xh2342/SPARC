@@ -9,6 +9,9 @@ const bull = (
     •
   </Box>
 );
+const changeStatus = () => {
+
+}
 
 export const EC2Card = ({instance}) => {
   return (
@@ -46,7 +49,7 @@ export const EC2Card = ({instance}) => {
             ):(             
             <div>
                 <Chip label={instance.State.Name.toUpperCase()}/>
-                <Button>Stop</Button>
+                <Button onClick={changeStatus()}>Stop</Button>
             </div>)}
         </Typography>
       </CardContent>
